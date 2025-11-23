@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital Forensic Triage Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Digital Forensic Triage Dashboard</h1>
+  </header>
+
+  <section class="upload-section">
+    <h2>Upload Disk Image</h2>
+    <input type="file" id="diskImage" accept=".E01,.001,.dd,.img" />
+    <div class="db-options">
+      <label><input type="checkbox" value="mongodb" /> MongoDB</label>
+      <label><input type="checkbox" value="postgres" /> PostgreSQL</label>
+      <label><input type="checkbox" value="neo4j" /> Neo4j</label>
+      <label><input type="checkbox" value="vector" /> VectorDB</label>
+    </div>
+    <button onclick="submitImage()">Extract & Store</button>
+  </section>
+
+  <section class="summary-section">
+    <h2>Recent Accessed Files</h2>
+    <div id="recentFiles"></div>
+  </section>
+
+  <section class="case-details">
+    <h2>Case Details</h2>
+    <ul>
+      <li>Allocated/Unallocated Space: <span id="spaceInfo"></span></li>
+      <li>File System: <span id="fsInfo"></span></li>
+      <li>SHA/MD5: <span id="hashInfo"></span></li>
+      <li>Keys: <span id="keysInfo"></span></li>
+      <li>Total Files: <span id="totalFiles"></span></li>
+    </ul>
+  </section>
+
+  <section class="plot-section">
+    <h2>Visualizations</h2>
+    <div class="plot-tabs">
+      <button onclick="loadPlot('histogram')">Histogram</button>
+      <button onclick="loadPlot('bar')">Bar Chart</button>
+      <button onclick="loadPlot('pie')">Pie Chart</button>
+      <button onclick="loadPlot('line')">Line Chart</button>
+    </div>
+    <canvas id="plotCanvas"></canvas>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
